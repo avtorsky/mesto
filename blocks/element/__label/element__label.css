@@ -1,0 +1,9 @@
+.element__label {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  overflow: hidden;
+  justify-content: space-between;
+  padding: 21px 15px 30px 21px;
+}

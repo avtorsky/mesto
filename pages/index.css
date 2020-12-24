@@ -1,0 +1,45 @@
+@import url('../vendor/normalize.css');
+
+@import url('../vendor/fonts/fonts.css');
+
+@import url('../blocks/page/page.css');
+
+@import url('../blocks/header/header.css');
+@import url('../blocks/header/__logo/header__logo.css');
+
+@import url('../blocks/content/content.css');
+
+@import url('../blocks/profile/profile.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__name/profile__name.css');
+@import url('../blocks/profile/__btn/profile__btn.css');
+@import url('../blocks/profile/__btn/_edit/profile__btn_edit.css');
+@import url('../blocks/profile/__btn/_add/profile__btn_add.css');
+@import url('../blocks/profile/__status/profile__status.css');
+
+@import url('../blocks/elements/elements.css');
+@import url('../blocks/elements/__list/elements__list.css');
+@import url('../blocks/element/element.css');
+@import url('../blocks/element/__photo/element__photo.css');
+@import url('../blocks/element/__label/element__label.css');
+@import url('../blocks/element/__name/element__name.css');
+@import url('../blocks/element/__btn/element__btn.css');
+@import url('../blocks/element/__btn/_disabled/element__btn_disabled.css');
+@import url('../blocks/element/__btn/_active/element__btn_active.css');
+
+@import url('../blocks/footer/footer.css');
+@import url('../blocks/footer/__copyright/footer__copyright.css');
+
+@import url('../blocks/popup/popup.css');
+@import url('../blocks/popup/_active/popup_active.css');
+@import url('../blocks/popup/__profile/popup__profile.css');
+
+@import url('../blocks/form/form.css');
+@import url('../blocks/form/__close-btn/form__close-btn.css');
+@import url('../blocks/form/__title/form__title.css');
+@import url('../blocks/form/__fieldset/form__fieldset.css');
+@import url('../blocks/form/__input/form__input.css');
+@import url('../blocks/form/__input/_name/form__input_name.css');
+@import url('../blocks/form/__input/_status/form__input_status.css');
+@import url('../blocks/form/__save-btn/form__save-btn.css');

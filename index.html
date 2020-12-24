@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Фотографии пользователя Джон Бернтал в сети Mesto Russia">
+  <meta name="keywords" content="mesto russia, фотографии">
+  <meta name="author" content="avtorsky">
+  <link rel="stylesheet" href="./pages/index.css">
+  <title>Джон Бернтал - Mesto Russia</title>
+</head>
+
+<body class="page">
+
+  <header class="header">
+    <a href="#"><img src="./images/header/header-logo.svg" alt="На главную - Mesto Russia" class="header__logo"></a>
+  </header>
+
+
+  <main class="content">
+
+    <section class="profile">
+      <img src="./images/profile/profile-avatar.jpg" alt="Пользователь - Джон Бернтал" class="profile__avatar">
+      <div class="profile__info">
+        <h1 class="profile__name">Джон&nbsp;Бернтал</h1>
+        <button class="profile__btn profile__btn_edit" aria-label="Редактировать профиль" type="button"></button>
+        <p class="profile__status">The truth must be taken</p>
+      </div>
+      <button class="profile__btn profile__btn_add" aria-label="Добавить фотографии" type="button"></button>
+    </section>
+
+    <section class="elements">
+      <ul class="elements__list">
+        <li class="element">
+          <img src="./images/element/__photo/igor-starkov-gW9r6nXNlOo-unsplash.jpg"
+            alt="Малибу - фото-лента Джона Бернтала" class="element__photo">
+          <div class="element__label">
+            <h2 class="element__name">Малибу</h2>
+            <button class="element__btn element__btn_disabled"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/element/__photo/sasha-yudaev-3_ltGI8Zzi0-unsplash.jpg"
+            alt="На верхах - фото-лента Джона Бернтала" class="element__photo">
+          <div class="element__label">
+            <h2 class="element__name">На верхах</h2>
+            <button class="element__btn element__btn_disabled"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/element/__photo/mister-x-i6CzkChCIgQ-unsplash.jpg"
+            alt="За хлебом - фото-лента Джона Бернтала" class="element__photo">
+          <div class="element__label">
+            <h2 class="element__name">За хлебом</h2>
+            <button class="element__btn element__btn_disabled"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/element/__photo/sasha-sashina-fAaUwTNZ1To-unsplash.jpg"
+            alt="Ни в чём не виноваты - фото-лента Джона Бернтала" class="element__photo">
+          <div class="element__label">
+            <h2 class="element__name">Ни в чём не виноваты</h2>
+            <button class="element__btn element__btn_disabled"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/element/__photo/alexey-turenkov-W8jQDQvk7Ek-unsplash.jpg"
+            alt="В ожидании утра - фото-лента Джона Бернтала" class="element__photo">
+          <div class="element__label">
+            <h2 class="element__name">В ожидании утра</h2>
+            <button class="element__btn element__btn_disabled"></button>
+          </div>
+        </li>
+        <li class="element">
+          <img src="./images/element/__photo/katherine-gu-TPI1gm8gbJs-unsplash.jpg"
+            alt="Оружейка - фото-лента Джона Бернтала" class="element__photo">
+          <div class="element__label">
+            <h2 class="element__name">Оружейка</h2>
+            <button class="element__btn element__btn_disabled"></button>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
+  </footer>
+
+  <section class="popup">
+    <div class="popup__profile">
+      <form class="form">
+        <button class="form__close-btn" type="button"></button>
+        <h2 class="form__title">Редактировать профиль</h2>
+        <fieldset class="form__fieldset">
+          <input class="form__input form__input_name" type="text" id="profile__name" name="name"
+            placeholder="Имя пользователя">
+          <input class="form__input form__input_status" type="text" id="profile__status" name="status"
+            placeholder="Статус">
+          <button class="form__save-btn">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
+  <script src="./scripts/index.js"></script>
+
+</body>
+
+</html>

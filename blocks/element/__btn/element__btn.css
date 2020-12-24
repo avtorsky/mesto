@@ -1,0 +1,18 @@
+.element__btn {
+  position: relative;
+  align-self: center;
+  width: 21px;
+  height: 18px;
+  border: 0;
+  border-radius: 0;
+  outline: none;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+  cursor: pointer;
+  transition: opacity .1s ease;
+}
+
+.element__btn:hover {
+  opacity: 0.6;
+}

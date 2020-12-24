@@ -1,0 +1,18 @@
+.profile__status {
+  margin: 0;
+  flex: 1 0 100%;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+  font-style: normal;
+  line-height: 1.21;
+  white-space: nowrap;
+  color: #FFFFFF;
+}
+
+@media screen and (max-width: 768px) {
+  .profile__status {
+    font-size: 14px;
+    text-align: center;
+  }
+}
