@@ -1,6 +1,6 @@
 .element__name {
   margin: 0;
-  max-width: 246px;
+  max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -11,7 +11,7 @@
   line-height: 1.20;
 }
 
-@media screen and (max-width: 425px) {
+@media screen and (max-width: 768px) {
   .element__name {
     line-height: 1.29;
   }

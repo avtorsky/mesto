@@ -25,10 +25,10 @@
       <img src="./images/profile/profile-avatar.jpg" alt="Пользователь - Джон Бернтал" class="profile__avatar">
       <div class="profile__info">
         <h1 class="profile__name">Джон&nbsp;Бернтал</h1>
-        <button class="profile__btn profile__btn_edit" aria-label="Редактировать профиль" type="button"></button>
+        <button class="profile__edit-btn" aria-label="Редактировать профиль" type="button"></button>
         <p class="profile__status">The truth must be taken</p>
       </div>
-      <button class="profile__btn profile__btn_add" aria-label="Добавить фотографии" type="button"></button>
+      <button class="profile__add-btn" aria-label="Добавить фотографии" type="button"></button>
     </section>
 
     <section class="elements">
@@ -38,7 +38,7 @@
             alt="Малибу - фото-лента Джона Бернтала" class="element__photo">
           <div class="element__label">
             <h2 class="element__name">Малибу</h2>
-            <button class="element__btn element__btn_disabled"></button>
+            <button class="element__btn" type="button"></button>
           </div>
         </li>
         <li class="element">
@@ -46,7 +46,7 @@
             alt="На верхах - фото-лента Джона Бернтала" class="element__photo">
           <div class="element__label">
             <h2 class="element__name">На верхах</h2>
-            <button class="element__btn element__btn_disabled"></button>
+            <button class="element__btn" type="button"></button>
           </div>
         </li>
         <li class="element">
@@ -54,7 +54,7 @@
             alt="За хлебом - фото-лента Джона Бернтала" class="element__photo">
           <div class="element__label">
             <h2 class="element__name">За хлебом</h2>
-            <button class="element__btn element__btn_disabled"></button>
+            <button class="element__btn" type="button"></button>
           </div>
         </li>
         <li class="element">
@@ -62,7 +62,7 @@
             alt="Ни в чём не виноваты - фото-лента Джона Бернтала" class="element__photo">
           <div class="element__label">
             <h2 class="element__name">Ни в чём не виноваты</h2>
-            <button class="element__btn element__btn_disabled"></button>
+            <button class="element__btn" type="button"></button>
           </div>
         </li>
         <li class="element">
@@ -70,7 +70,7 @@
             alt="В ожидании утра - фото-лента Джона Бернтала" class="element__photo">
           <div class="element__label">
             <h2 class="element__name">В ожидании утра</h2>
-            <button class="element__btn element__btn_disabled"></button>
+            <button class="element__btn" type="button"></button>
           </div>
         </li>
         <li class="element">
@@ -78,7 +78,7 @@
             alt="Оружейка - фото-лента Джона Бернтала" class="element__photo">
           <div class="element__label">
             <h2 class="element__name">Оружейка</h2>
-            <button class="element__btn element__btn_disabled"></button>
+            <button class="element__btn" type="button"></button>
           </div>
         </li>
       </ul>
@@ -91,16 +91,14 @@
   </footer>
 
   <section class="popup">
-    <div class="popup__profile">
-      <form class="form">
-        <button class="form__close-btn" type="button"></button>
+    <div class="popup__window">
+      <button class="form__close-btn" type="button"></button>
+      <form class="form" name="profile">
         <h2 class="form__title">Редактировать профиль</h2>
         <fieldset class="form__fieldset">
-          <input class="form__input form__input_name" type="text" id="profile__name" name="name"
-            placeholder="Имя пользователя">
-          <input class="form__input form__input_status" type="text" id="profile__status" name="status"
-            placeholder="Статус">
-          <button class="form__save-btn">Сохранить</button>
+          <input class="form__input" type="text" id="profile__name" name="name" placeholder="Имя пользователя">
+          <input class="form__input" type="text" id="profile__status" name="status" placeholder="Статус">
+          <button class="form__save-btn" type="submit">Сохранить</button>
         </fieldset>
       </form>
     </div>
