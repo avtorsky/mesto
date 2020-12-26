@@ -1,5 +1,5 @@
 const popupLayer = document.querySelector('.popup');
-const popupCloseButton = popupLayer.querySelector('.form__close-btn');
+const popupCloseButton = popupLayer.querySelector('.popup__close-btn');
 const profileEditButton = document.querySelector('.profile__edit-btn');
 
 let profileName = document.querySelector('.profile__name');
