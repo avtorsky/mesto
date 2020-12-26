@@ -1,4 +1,4 @@
-.popup__profile {
+.popup__window {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -11,8 +11,8 @@
   padding: 34px 36px 37px 36px;
 }
 
-@media screen and (max-width: 730px) {
-  .popup__profile{
+@media screen and (max-width: 768px) {
+  .popup__window {
     min-width: 282px;
     padding: 25px 22px 25px 22px;
   }

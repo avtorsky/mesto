@@ -14,7 +14,7 @@
   }
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 768px) {
   .elements__list {
     padding-top: 36px;
     grid-template-columns: 1fr;

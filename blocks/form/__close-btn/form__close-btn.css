@@ -1,10 +1,10 @@
 .form__close-btn {
   position: absolute;
-  width: 40px;
-  height: 40px;
+  width: 42px;
+  height: 42px;
   background-image: url('../../../images/form/from__close-btn.svg');
   top: -35px;
-  right: -30px;
+  right: -35px;
   transition: opacity .1s ease;
   border: none;
   outline: none;
@@ -21,7 +21,7 @@
   opacity: .6;
 }
 
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 768px) {
   .form__close-btn {
     top: -35px;
     right: -5px;

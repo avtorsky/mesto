@@ -2,7 +2,7 @@
   position: relative;
   display: flex;
   flex-wrap: wrap;
-  max-width: 336px;
+  max-width: 345px;
   margin: 0;
   padding: 0px 0px 0px 30px;
 }
@@ -10,7 +10,7 @@
 @media screen and (max-width: 768px) {
   .profile__info {
     justify-content: center;
-    width: 100%;
+    width: 282px;
     padding: 22px 0px 36px 0px;
   }
 }
