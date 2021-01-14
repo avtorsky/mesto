@@ -6,16 +6,19 @@
 [Contact](#contact)
 
 ## About
-Adaptive profile page with the following stack implementation:
-* HTML: semantic markup, __BEM__, accessibility support;
-* CSS: __Flexbox__, __Grid Layout__;
+Adaptive single page demo with the following stack implementation:
+* HTML: BEM, a11y;
+* CSS: Flexbox, Grid Layout;
 * JavaScript
 
 Developed under the [Practicum](https://practicum.yandex.com/web/) online bootcamp.
 
 ## Changelog
+Release 20210114:
+* feat(elements): updated index.js to render and manage cards feed;
+
 Release 20201224:
-* feat(profile): added JS to populate attributes with fieldset values;
+* feat(profile): added index.js to populate attributes with fieldset values;
 
 
 ## Environment

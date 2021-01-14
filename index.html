@@ -28,60 +28,20 @@
         <button class="profile__edit-btn" aria-label="Редактировать профиль" type="button"></button>
         <p class="profile__status">The truth must be taken</p>
       </div>
-      <button class="profile__add-btn" aria-label="Добавить фотографии" type="button"></button>
+      <button class="profile__add-btn" aria-label="Добавить фотокарточку" type="button"></button>
     </section>
 
     <section class="elements">
-      <ul class="elements__list">
-        <li class="element">
-          <img src="./images/element/__photo/igor-starkov-gW9r6nXNlOo-unsplash.jpg"
-            alt="Малибу - фото-лента Джона Бернтала" class="element__photo">
+      <template class="elements__template">
+        <div class="element">
+          <div class="element__delete-btn"></div>
+          <img alt="" class="element__photo"></img>
           <div class="element__label">
-            <h2 class="element__name">Малибу</h2>
-            <button class="element__btn" type="button"></button>
+            <h2 class="element__name"></h2>
+            <button class="element__like-btn"></button>
           </div>
-        </li>
-        <li class="element">
-          <img src="./images/element/__photo/sasha-yudaev-3_ltGI8Zzi0-unsplash.jpg"
-            alt="На верхах - фото-лента Джона Бернтала" class="element__photo">
-          <div class="element__label">
-            <h2 class="element__name">На верхах</h2>
-            <button class="element__btn" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/element/__photo/mister-x-i6CzkChCIgQ-unsplash.jpg"
-            alt="За хлебом - фото-лента Джона Бернтала" class="element__photo">
-          <div class="element__label">
-            <h2 class="element__name">За хлебом</h2>
-            <button class="element__btn" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/element/__photo/sasha-sashina-fAaUwTNZ1To-unsplash.jpg"
-            alt="Ни в чём не виноваты - фото-лента Джона Бернтала" class="element__photo">
-          <div class="element__label">
-            <h2 class="element__name">Ни в чём не виноваты</h2>
-            <button class="element__btn" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/element/__photo/alexey-turenkov-W8jQDQvk7Ek-unsplash.jpg"
-            alt="В ожидании утра - фото-лента Джона Бернтала" class="element__photo">
-          <div class="element__label">
-            <h2 class="element__name">В ожидании утра</h2>
-            <button class="element__btn" type="button"></button>
-          </div>
-        </li>
-        <li class="element">
-          <img src="./images/element/__photo/katherine-gu-TPI1gm8gbJs-unsplash.jpg"
-            alt="Оружейка - фото-лента Джона Бернтала" class="element__photo">
-          <div class="element__label">
-            <h2 class="element__name">Оружейка</h2>
-            <button class="element__btn" type="button"></button>
-          </div>
-        </li>
-      </ul>
+        </div>
+      </template>
     </section>
 
   </main>
@@ -90,17 +50,44 @@
     <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
   </footer>
 
-  <section class="popup">
-    <div class="popup__window">
-      <button class="popup__close-btn" type="button"></button>
-      <form class="form" name="profile">
-        <h2 class="form__title">Редактировать профиль</h2>
-        <fieldset class="form__fieldset">
-          <input class="form__input" type="text" id="profile__name" name="name" placeholder="Имя пользователя">
-          <input class="form__input" type="text" id="profile__status" name="status" placeholder="Статус">
-          <button class="form__save-btn" type="submit">Сохранить</button>
+  <section class="popup-edit">
+    <div class="popup-edit__window">
+      <button class="popup-edit__close-btn" type="button"></button>
+      <form class="form-edit" name="profile">
+        <h2 class="form-edit__title">Редактировать профиль</h2>
+        <fieldset class="form-edit__fieldset">
+          <input class="form-edit__input" type="text" id="profile__name" name="profilename"
+            placeholder="Имя пользователя">
+          <input class="form-edit__input" type="text" id="profile__status" name="profilestatus" placeholder="Статус">
+          <button class="form-edit__save-btn" type="submit">Сохранить</button>
         </fieldset>
       </form>
+    </div>
+  </section>
+
+  <section class="popup-add">
+    <div class="popup-add__window">
+      <button class="popup-add__close-btn" type="button"></button>
+      <form class="form-add" name="add-card">
+        <h2 class="form-add__title">Новая фотокарточка</h2>
+        <fieldset class="form-add__fieldset">
+          <input class="form-add__input" type="text" id="card__name" name="cardname" placeholder="Название карточки"
+            required>
+          <input class="form-add__input" type="url" id="card__link" name="cardlink" placeholder="Ссылка на фотографию"
+            required>
+          <button class="form-add__save-btn" type="submit">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
+  <section class="popup-open">
+    <div class="popup-open__window">
+      <button class="popup-open__close-btn" type="button"></button>
+      <figure class="popup-open__figure">
+        <img alt="" class="popup-open__image">
+        <figcaption class="popup-open__figcaption"></figcaption>
+      </figure>
     </div>
   </section>
 
