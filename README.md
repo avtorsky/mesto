@@ -14,6 +14,9 @@ Adaptive single page demo with the following stack implementation:
 Developed under the [Practicum](https://practicum.yandex.com/web/) online bootcamp.
 
 ## Changelog
+Release 20200121:
+* refactor(index.js): changes in elements && popup section
+
 Release 20210114:
 * feat(elements): updated index.js to render and manage cards feed;
 
