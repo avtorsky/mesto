@@ -53,13 +53,20 @@
   <section class="popup popup-edit">
     <div class="popup-edit__window">
       <button class="popup-edit__close-btn" type="button"></button>
-      <form class="form-edit" name="profile">
+      <form class="form form-edit" name="profile" novalidate>
         <h2 class="form-edit__title">Редактировать профиль</h2>
         <fieldset class="form-edit__fieldset">
-          <input class="form-edit__input" type="text" id="profile__name" name="profilename"
-            placeholder="Имя пользователя">
-          <input class="form-edit__input" type="text" id="profile__status" name="profilestatus" placeholder="Статус">
-          <button class="form-edit__save-btn" type="submit">Сохранить</button>
+          <label class="form__field">
+            <input class="form__input form-edit__input" type="text" id="profile-name" name="profile-name"
+              placeholder="Имя пользователя" minlength="2" maxlength="40" required>
+            <span class="form__input-error" id="profile-name-error"></span>
+          </label>
+          <label class="form__field">
+            <input class="form__input form-edit__input" type="text" id="profile-status" name="profile-status"
+              placeholder="Статус" minlength="2" maxlength="200" required>
+            <span class="form__input-error" id="profile-status-error"></span>
+          </label>
+          <button class="form__btn form-edit__save-btn" type="submit">Сохранить</button>
         </fieldset>
       </form>
     </div>
@@ -68,14 +75,20 @@
   <section class="popup popup-add">
     <div class="popup-add__window">
       <button class="popup-add__close-btn" type="button"></button>
-      <form class="form-add" name="add-card">
+      <form class="form form-add" name="add-card" novalidate>
         <h2 class="form-add__title">Новая фотокарточка</h2>
         <fieldset class="form-add__fieldset">
-          <input class="form-add__input" type="text" id="card__name" name="cardname" placeholder="Название карточки"
-            required>
-          <input class="form-add__input" type="url" id="card__link" name="cardlink" placeholder="Ссылка на фотографию"
-            required>
-          <button class="form-add__save-btn" type="submit">Сохранить</button>
+          <label class="form__field">
+            <input class="form__input form-add__input" type="text" id="card-name" name="card-name"
+              placeholder="Название карточки" minlength="2" maxlength="30" required>
+            <span class="form__input-error" id="card-name-error"></span>
+          </label>
+          <label class="form__field">
+            <input class="form__input form-add__input" type="url" id="card-link" name="card-link"
+              placeholder="Ссылка на фотографию" required>
+            <span class="form__input-error" id="card-link-error"></span>
+          </label>
+          <button class="form__btn form-add__save-btn" type="submit">Сохранить</button>
         </fieldset>
       </form>
     </div>
@@ -91,6 +104,7 @@
     </div>
   </section>
 
+  <script src="./scripts/validation.js"></script>
   <script src="./scripts/index.js"></script>
 
 </body>

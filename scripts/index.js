@@ -8,15 +8,15 @@ const profileEditButton = document.querySelector('.profile__edit-btn');
 const profileName = document.querySelector('.profile__name');
 const profileStatus = document.querySelector('.profile__status');
 const formEdit = popupEdit.querySelector('.form-edit');
-const formEditName = popupEdit.querySelector('#profile__name');
-const formEditStatus = popupEdit.querySelector('#profile__status');
+const formEditName = popupEdit.querySelector('#profile-name');
+const formEditStatus = popupEdit.querySelector('#profile-status');
 
 const popupAdd = document.querySelector('.popup-add');
 const popupAddCloseButton = popupAdd.querySelector('.popup-add__close-btn');
 const cardAddButton = document.querySelector('.profile__add-btn');
 const formAdd = popupAdd.querySelector('.form-add');
-const formAddName = popupAdd.querySelector('#card__name');
-const formAddLink = popupAdd.querySelector('#card__link');
+const formAddName = popupAdd.querySelector('#card-name');
+const formAddLink = popupAdd.querySelector('#card-link');
 
 const popupOpen = document.querySelector('.popup-open');
 const popupOpenCloseButton = popupOpen.querySelector('.popup-open__close-btn');
@@ -58,13 +58,31 @@ const isPopupOverlay = (event) => {
     return event.target.classList.remove('popup_active');
   }
 };
+const closePopupWithEsc = (event) => {
+  if (event.key === 'Escape') {
+    return event.target.classList.remove('popup_active');
+  }
+}
+
 const popupViewable = (elem) => {
   elem.classList.add('popup_active');
   elem.addEventListener('mouseup', isPopupOverlay);
+  elem.addEventListener('keydown', closePopupWithEsc);
 };
 const popupUnviewable = (elem) => {
   elem.classList.remove('popup_active');
   elem.removeEventListener('mouseup', isPopupOverlay);
+  elem.removeEventListener('keydown', closePopupWithEsc);
+};
+
+const formValidationConfig = (currentForm) => {
+  const inputList = findInputs(currentForm, formValidationSelectors.inputSelector);
+  const buttonElement = findButtons(currentForm, formValidationSelectors.submitButtonSelector);
+  toggleButtonState(currentForm, buttonElement, formValidationSelectors.inactiveButtonClass);
+
+  inputList.forEach((input) => {
+    hideInputErrorMessage(input, formValidationSelectors.errorClass, formValidationSelectors.inputErrorClass);
+  })
 };
 
 const handleFormEditSubmit = (event) => {
@@ -120,11 +138,13 @@ profileEditButton.addEventListener('click', () => {
   popupViewable(popupEdit);
   formEditName.value = profileName.textContent;
   formEditStatus.value = profileStatus.textContent;
+  formValidationConfig(formEdit);
 });
 formEdit.addEventListener('submit', handleFormEditSubmit);
 
 cardAddButton.addEventListener('click', () => {
   popupViewable(popupAdd);
+  formValidationConfig(formAdd);
 });
 popupAddCloseButton.addEventListener('click', () => {
   popupUnviewable(popupAdd);

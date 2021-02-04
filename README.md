@@ -14,14 +14,17 @@ Adaptive single page demo with the following stack implementation:
 Developed under the [Practicum](https://practicum.yandex.com/web/) online bootcamp.
 
 ## Changelog
-Release 20200121:
+Release 20210204:
+* feature(validation.js): added forms validation
+
+Release 20210121:
 * refactor(index.js): changes in elements && popup section
 
 Release 20210114:
-* feat(elements): updated index.js to render and manage cards feed;
+* feature(elements): updated index.js to render and manage cards feed;
 
 Release 20201224:
-* feat(profile): added index.js to populate attributes with fieldset values;
+* feature(profile): added index.js to populate attributes with fieldset values;
 
 
 ## Environment
