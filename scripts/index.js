@@ -1,3 +1,6 @@
+import Card from './Card.js';
+import FormValidator from './FormValidator.js';
+
 // Переменные
 
 const popupElement = document.querySelector('.popup');
@@ -22,7 +25,6 @@ const popupOpen = document.querySelector('.popup-open');
 const popupOpenCloseButton = popupOpen.querySelector('.popup-open__close-btn');
 
 const cards = document.querySelector('.elements');
-const cardCreateTemplate = document.querySelector('.elements__template').content;
 const initialCards = [
   {
     name: 'Оружейка',
@@ -50,6 +52,16 @@ const initialCards = [
   },
 ];
 
+const formValidationSelectors = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__btn',
+  inactiveButtonClass: 'form__btn_disabled',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__input-error_active'
+};
+const formEditValidator = new FormValidator(formValidationSelectors, formEdit);
+const formAddValidator = new FormValidator(formValidationSelectors, formAdd);
 
 // Функции
 
@@ -75,16 +87,6 @@ const popupUnviewable = (elem) => {
   elem.removeEventListener('keydown', closePopupWithEsc);
 };
 
-const formValidationConfig = (currentForm) => {
-  const inputList = findInputs(currentForm, formValidationSelectors.inputSelector);
-  const buttonElement = findButtons(currentForm, formValidationSelectors.submitButtonSelector);
-  toggleButtonState(currentForm, buttonElement, formValidationSelectors.inactiveButtonClass);
-
-  inputList.forEach((input) => {
-    hideInputErrorMessage(input, formValidationSelectors.errorClass, formValidationSelectors.inputErrorClass);
-  })
-};
-
 const handleFormEditSubmit = (event) => {
   event.preventDefault();
   profileName.textContent = formEditName.value;
@@ -100,23 +102,7 @@ const popupOpenButton = (object, name) => {
   popupOpen.querySelector('.popup-open__figcaption').textContent = name;
 };
 
-const createCardElement = (elem) => {
-  const cardItem = cardCreateTemplate.cloneNode(true);
-  const cardPhoto = cardItem.querySelector('.element__photo');
-  cardPhoto.src = elem.link;
-  cardPhoto.alt = elem.name;
-  cardItem.querySelector('.element__name').textContent = elem.name;
-  cardItem.querySelector('.element__delete-btn').addEventListener('click', (event) => {
-    event.target.parentElement.remove();
-  });
-  cardItem.querySelector('.element__like-btn').addEventListener('click', (event) => {
-    event.target.classList.toggle('element__like-btn_active');
-  });
-  cardPhoto.addEventListener('click', (event) => {
-    popupOpenButton(event, elem.name);
-  });
-  return cardItem;
-};
+const createCardElement = (elem) => new Card(elem, '.elements__template', popupOpenButton).renderCard();
 const addCardToFeed = (elem) => {
   const cardItem = createCardElement(elem);
   cards.prepend(cardItem);
@@ -129,6 +115,9 @@ const createCardsFeed = (array) => {
 };
 createCardsFeed(initialCards);
 
+formEditValidator.enableValidation();
+formAddValidator.enableValidation();
+
 // Обработчики
 
 popupEditCloseButton.addEventListener('click', () => {
@@ -138,13 +127,13 @@ profileEditButton.addEventListener('click', () => {
   popupViewable(popupEdit);
   formEditName.value = profileName.textContent;
   formEditStatus.value = profileStatus.textContent;
-  formValidationConfig(formEdit);
+  formEditValidator.formValidationConfig();
 });
 formEdit.addEventListener('submit', handleFormEditSubmit);
 
 cardAddButton.addEventListener('click', () => {
   popupViewable(popupAdd);
-  formValidationConfig(formAdd);
+  formAddValidator.formValidationConfig();
 });
 popupAddCloseButton.addEventListener('click', () => {
   popupUnviewable(popupAdd);

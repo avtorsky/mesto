@@ -14,6 +14,9 @@ Adaptive single page demo with the following stack implementation:
 Developed under the [Practicum](https://practicum.yandex.com/web/) online bootcamp.
 
 ## Changelog
+Release 20210224:
+* refactor(index.js): object-oriented code refactoring && split into modules Card.js && FormValidation.js
+
 Release 20210204:
 * feature(validation.js): added forms validation
 
