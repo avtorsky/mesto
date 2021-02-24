@@ -72,19 +72,19 @@ const isPopupOverlay = (event) => {
 };
 const closePopupWithEsc = (event) => {
   if (event.key === 'Escape') {
-    return event.target.classList.remove('popup_active');
+    popupUnviewable(document.querySelector('.popup_active'));
   }
-}
+};
 
 const popupViewable = (elem) => {
   elem.classList.add('popup_active');
   elem.addEventListener('mouseup', isPopupOverlay);
-  elem.addEventListener('keydown', closePopupWithEsc);
+  document.addEventListener('keydown', closePopupWithEsc);
 };
 const popupUnviewable = (elem) => {
   elem.classList.remove('popup_active');
   elem.removeEventListener('mouseup', isPopupOverlay);
-  elem.removeEventListener('keydown', closePopupWithEsc);
+  document.removeEventListener('keydown', closePopupWithEsc);
 };
 
 const handleFormEditSubmit = (event) => {
