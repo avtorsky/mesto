@@ -3,7 +3,7 @@ import FormValidator from './FormValidator.js';
 
 // Переменные
 
-const popupElement = document.querySelector('.popup');
+const keyEscapeSelector = 'Escape';
 
 const popupEdit = document.querySelector('.popup-edit');
 const popupEditCloseButton = popupEdit.querySelector('.popup-edit__close-btn');
@@ -71,7 +71,7 @@ const isPopupOverlay = (event) => {
   }
 };
 const closePopupWithEsc = (event) => {
-  if (event.key === 'Escape') {
+  if (event.key === keyEscapeSelector) {
     popupUnviewable(document.querySelector('.popup_active'));
   }
 };
