@@ -5,10 +5,11 @@ export default class PopupWithImage extends Popup {
     super(popupSelector);
   }
 
-  open(event, name) {
-    this._popup.classList.add('popup_active');
-    document.addEventListener('keydown', (event) => super._handleEscClose(event));
-    this._popup.querySelector('.popup-open__image').src = event.target.src;
+  open(name, link) {
+    super.open();
+    this._popupCardImage = this._popup.querySelector('.popup-open__image');
+    this._popupCardImage.src = link;
+    this._popupCardImage.alt = `${name}`;
     this._popup.querySelector('.popup-open__figcaption').textContent = name;
   }
 }

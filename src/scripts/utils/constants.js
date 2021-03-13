@@ -29,26 +29,26 @@ export const popupOpenSelector = '.popup-open';
 export const initialCards = [
   {
     name: 'Оружейка',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/images/element/__photo/katherine-gu-TPI1gm8gbJs-unsplash.jpg'
+    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/katherine-gu-TPI1gm8gbJs-unsplash.jpg'
   },
   {
     name: 'В ожидании утра',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/images/element/__photo/alexey-turenkov-W8jQDQvk7Ek-unsplash.jpg'
+    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/alexey-turenkov-W8jQDQvk7Ek-unsplash.jpg'
   },
   {
     name: 'Ни в чём не виноваты',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/images/element/__photo/sasha-sashina-fAaUwTNZ1To-unsplash.jpg'
+    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/sasha-sashina-fAaUwTNZ1To-unsplash.jpg'
   },
   {
     name: 'За хлебом',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/images/element/__photo/mister-x-i6CzkChCIgQ-unsplash.jpg'
+    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/mister-x-i6CzkChCIgQ-unsplash.jpg'
   },
   {
     name: 'На верхах',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/images/element/__photo/sasha-yudaev-3_ltGI8Zzi0-unsplash.jpg'
+    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/sasha-yudaev-3_ltGI8Zzi0-unsplash.jpg'
   },
   {
     name: 'Малибу',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/images/element/__photo/igor-starkov-gW9r6nXNlOo-unsplash.jpg'
+    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/igor-starkov-gW9r6nXNlOo-unsplash.jpg'
   },
 ];
