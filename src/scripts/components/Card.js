@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(elem, cardSelector, popupOpenButton) {
+  constructor(elem, cardSelector, { handleCardClick }) {
     this._name = elem.name;
     this._link = elem.link;
     this._cardSelector = cardSelector;
-    this._popupOpenButton = popupOpenButton;
+    this._handleCardClick = handleCardClick;
   }
 
   _getCardTemplate() {
@@ -14,7 +14,7 @@ export default class Card {
   _setCardEventListeners() {
     this._element.querySelector('.element__like-btn').addEventListener('click', (event) => this._toggleCardLikeButton(event));
     this._element.querySelector('.element__delete-btn').addEventListener('click', (event) => this._handleCardDeleteButton(event));
-    this._cardPhoto.addEventListener('click', (event) => this._popupOpenButton(event, this._name));
+    this._cardPhoto.addEventListener('click', (event) => this._handleCardClick(event, this._name));
   }
 
   _toggleCardLikeButton(event) {
