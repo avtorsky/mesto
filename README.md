@@ -9,11 +9,18 @@
 Adaptive single page demo with the following stack implementation:
 * HTML: BEM, a11y;
 * CSS: Flexbox, Grid Layout;
-* JavaScript
+* JavaScript, NPM, Webpack, Babel
 
 Developed under the [Practicum](https://practicum.yandex.com/web/) online bootcamp.
 
 ## Changelog
+Release 20210313:
+* refactor(index.js): split into additional modules Section.js, Popup.js, PopupWithImage.js, PopupWithForm.js, UserInfo.js
+* build(webpack.config.js): build configuration setup
+* build(package.json): NPM dependencies configuration
+* build(babel.config.js): JS transpilation setup
+* build(postcss.config.js): Autoprefixer configuration
+
 Release 20210224:
 * refactor(index.js): object-oriented code refactoring && split into modules Card.js && FormValidation.js
 

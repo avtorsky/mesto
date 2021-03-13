@@ -7,14 +7,14 @@
   <meta name="description" content="Фотографии пользователя Джон Бернтал в сети Mesto Russia">
   <meta name="keywords" content="mesto russia, фотографии">
   <meta name="author" content="avtorsky">
-  <link rel="stylesheet" href="./pages/index.css">
+  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Джон Бернтал - Mesto Russia</title>
 </head>
 
 <body class="page">
 
   <header class="header">
-    <a href="#" target="_self"><img src="./images/header/header-logo.svg" alt="На главную - Mesto Russia"
+    <a href="#" target="_self"><img src="../src/images/header/header-logo.svg" alt="На главную - Mesto Russia"
         class="header__logo"></a>
   </header>
 
@@ -22,7 +22,7 @@
   <main class="content">
 
     <section class="profile">
-      <img src="./images/profile/profile-avatar.jpg" alt="Пользователь - Джон Бернтал" class="profile__avatar">
+      <img src="../src/images/profile/profile-avatar.jpg" alt="Пользователь - Джон Бернтал" class="profile__avatar">
       <div class="profile__info">
         <h1 class="profile__name">Джон&nbsp;Бернтал</h1>
         <button class="profile__edit-btn" aria-label="Редактировать профиль" type="button"></button>
@@ -57,12 +57,12 @@
         <h2 class="form-edit__title">Редактировать профиль</h2>
         <fieldset class="form-edit__fieldset">
           <label class="form__field">
-            <input class="form__input form-edit__input" type="text" id="profile-name" name="profile-name"
+            <input class="form__input form-edit__input" type="text" id="profile-name" name="name"
               placeholder="Имя пользователя" minlength="2" maxlength="40" required>
             <span class="form__input-error" id="profile-name-error"></span>
           </label>
           <label class="form__field">
-            <input class="form__input form-edit__input" type="text" id="profile-status" name="profile-status"
+            <input class="form__input form-edit__input" type="text" id="profile-status" name="status"
               placeholder="Статус" minlength="2" maxlength="200" required>
             <span class="form__input-error" id="profile-status-error"></span>
           </label>
@@ -79,12 +79,12 @@
         <h2 class="form-add__title">Новая фотокарточка</h2>
         <fieldset class="form-add__fieldset">
           <label class="form__field">
-            <input class="form__input form-add__input" type="text" id="card-name" name="card-name"
+            <input class="form__input form-add__input" type="text" id="card-name" name="name"
               placeholder="Название карточки" minlength="2" maxlength="30" required>
             <span class="form__input-error" id="card-name-error"></span>
           </label>
           <label class="form__field">
-            <input class="form__input form-add__input" type="url" id="card-link" name="card-link"
+            <input class="form__input form-add__input" type="url" id="card-link" name="link"
               placeholder="Ссылка на фотографию" required>
             <span class="form__input-error" id="card-link-error"></span>
           </label>
@@ -104,9 +104,15 @@
     </div>
   </section>
 
-  <script type="module" src="./scripts/Card.js"></script>
-  <script type="module" src="./scripts/FormValidator.js"></script>
-  <script type="module" src="./scripts/index.js"></script>
+  <!-- <script type="module" src="./scripts/utils/constants.js"></script>
+  <script type="module" src="./scripts/components/Card.js"></script>
+  <script type="module" src="./scripts/components/FormValidator.js"></script>
+  <script type="module" src="./scripts/components/Popup.js"></script>
+  <script type="module" src="./scripts/components/PopupWithForm.js"></script>
+  <script type="module" src="./scripts/components/PopupWithImage.js"></script>
+  <script type="module" src="./scripts/components/Section.js"></script>
+  <script type="module" src="./scripts/components/UserInfo.js"></script>
+  <script type="module" src="./src/index.js"></script> -->
 
 </body>
 
