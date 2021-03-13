@@ -31,8 +31,8 @@ const handleFormEditSubmit = ({ name, status }) => {
 };
 
 const addCardToFeed = ({ name, link }) => {
-  const userCard = [{ name, link }];
-  createCardElement(userCard).renderItems();
+  const userCard = createCardElement({ name, link });
+  cardsFeed.addItem(userCard);
   popupAdd.close();
 };
 
@@ -50,22 +50,25 @@ const formAddValidator = new FormValidator(formValidationSelectors, formAdd);
 
 // Функции
 
-const createCardElement = (dataFeed) => {
-  const cardsFeed = new Section({
-    items: dataFeed, renderer: (item) => {
-      const card = new Card(item, cardTemplateSelector, {
-        handleCardClick: (name, link) => {
-          popupOpen.open(name, link);
-        }
-      });
-      const cardItem = card.renderCard();
-      cardsFeed.addItem(cardItem);
+const createCardElement = (cardData) => {
+  const card = new Card(cardData, cardTemplateSelector, {
+    handleCardClick: (name, link) => {
+      popupOpen.open(name, link);
     }
-  }, cardsContainerSelector)
-  return cardsFeed;
+  });
+  const cardElement = card.renderCard();
+  return cardElement;
 }
 
-createCardElement(initialCards).renderItems();
+const cardsFeed = new Section({
+  items: initialCards,
+  renderer: (item) => {
+    const cardItem = createCardElement(item);
+    cardsFeed.addItem(cardItem);
+  }
+}, cardsContainerSelector);
+
+cardsFeed.renderItems();
 
 formEditValidator.enableValidation();
 formAddValidator.enableValidation();
