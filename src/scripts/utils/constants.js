@@ -4,10 +4,19 @@ export const profileEditButton = document.querySelector('.profile__edit-btn');
 export const formEdit = popupEdit.querySelector('.form-edit');
 export const formEditName = popupEdit.querySelector('#profile-name');
 export const formEditStatus = popupEdit.querySelector('#profile-status');
+export const formEditSubmitButton = popupEdit.querySelector('.form-edit__save-btn');
 export const popupAdd = document.querySelector('.popup-add');
 export const cardAddButton = document.querySelector('.profile__add-btn');
 export const formAdd = popupAdd.querySelector('.form-add');
+export const formAddCardName = formAdd.querySelector('#card-name');
+export const formAddCardLink = formAdd.querySelector('#card-link');
+export const formAddCardSubmitButton = popupAdd.querySelector('.form-add__save-btn');
 export const popupOpen = document.querySelector('.popup-open');
+export const formEditAvatar = document.querySelector('.form-avatar-edit');
+export const avatarEditButton = document.querySelector('.profile__avatar-edit-btn');
+export const formEditAvatarSubmitButton = document.querySelector('.form-avatar-edit__save-btn');
+export const formDelete = document.querySelector('.form-delete');
+export const formDeleteSubmitButton = formDelete.querySelector('.form-delete__save-btn')
 
 export const formValidationSelectors = {
   formSelector: '.form',
@@ -25,30 +34,14 @@ export const profileStatusSelector = '.profile__status';
 export const popupEditSelector = '.popup-edit';
 export const popupAddSelector = '.popup-add';
 export const popupOpenSelector = '.popup-open';
+export const profileAvatarSelector = '.profile__avatar';
+export const popupEditAvatarSelector = '.popup-avatar-edit';
+export const popupDeleteSelector = '.popup-delete';
 
-export const initialCards = [
-  {
-    name: 'Оружейка',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/katherine-gu-TPI1gm8gbJs-unsplash.jpg'
-  },
-  {
-    name: 'В ожидании утра',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/alexey-turenkov-W8jQDQvk7Ek-unsplash.jpg'
-  },
-  {
-    name: 'Ни в чём не виноваты',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/sasha-sashina-fAaUwTNZ1To-unsplash.jpg'
-  },
-  {
-    name: 'За хлебом',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/mister-x-i6CzkChCIgQ-unsplash.jpg'
-  },
-  {
-    name: 'На верхах',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/sasha-yudaev-3_ltGI8Zzi0-unsplash.jpg'
-  },
-  {
-    name: 'Малибу',
-    link: 'https://raw.githubusercontent.com/avtorsky/mesto/master/src/images/element/__photo/igor-starkov-gW9r6nXNlOo-unsplash.jpg'
-  },
-];
+export const apiAuthorizationConfig = {
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
+  headers: {
+    authorization: '0771498a-40b6-4e5b-8924-7ee0f33d1842',
+    'Content-Type': 'application/json'
+  }
+};

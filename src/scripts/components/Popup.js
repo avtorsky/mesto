@@ -24,7 +24,7 @@ export default class Popup {
 
   setEventListeners() {
     this._popup.addEventListener('click', (elem) => {
-      if ((elem.target.classList.contains('popup_active')) || (elem.target.classList.contains('popup-edit__close-btn')) || (elem.target.classList.contains('popup-add__close-btn')) || (elem.target.classList.contains('popup-open__close-btn'))) {
+      if ((elem.target.classList.contains('popup_active')) || (elem.target.classList.contains('popup-edit__close-btn')) || (elem.target.classList.contains('popup-avatar-edit__close-btn')) || (elem.target.classList.contains('popup-add__close-btn')) || (elem.target.classList.contains('popup-delete__close-btn')) || (elem.target.classList.contains('popup-open__close-btn'))) {
         this.close();
       }
     });
