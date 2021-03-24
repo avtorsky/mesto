@@ -1,6 +1,7 @@
 .element__like-btn {
   position: relative;
   align-self: center;
+  margin: 0 0 3px 0;
   width: 21px;
   height: 18px;
   border: 0;

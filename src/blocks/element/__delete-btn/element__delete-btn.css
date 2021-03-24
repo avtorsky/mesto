@@ -12,6 +12,7 @@
   background-position: center;
   cursor: pointer;
   transition: opacity .1s ease;
+  display: none;
 }
 
 .element__delete-btn:hover {

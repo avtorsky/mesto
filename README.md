@@ -14,6 +14,9 @@ Adaptive single page demo with the following stack implementation:
 Developed under the [Practicum](https://practicum.yandex.com/web/) online bootcamp.
 
 ## Changelog
+Release 20210325:
+* refactor(index.js): load all the assets via server REST API connection.
+
 Release 20210313:
 * refactor(index.js): split into additional modules Section.js, Popup.js, PopupWithImage.js, PopupWithForm.js, UserInfo.js
 * build(webpack.config.js): build configuration setup
@@ -35,7 +38,6 @@ Release 20210114:
 
 Release 20201224:
 * feature(profile): added index.js to populate attributes with fieldset values;
-
 
 ## Environment
 __Production release:__ <a href="https://avtorsky.github.io/mesto/" target="_blank">https://avtorsky.github.io/mesto/</a>

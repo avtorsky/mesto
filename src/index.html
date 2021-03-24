@@ -7,7 +7,6 @@
   <meta name="description" content="Фотографии пользователя Джон Бернтал в сети Mesto Russia">
   <meta name="keywords" content="mesto russia, фотографии">
   <meta name="author" content="avtorsky">
-  <!-- <link rel="stylesheet" href="./pages/index.css"> -->
   <title>Джон Бернтал - Mesto Russia</title>
 </head>
 
@@ -22,11 +21,12 @@
   <main class="content">
 
     <section class="profile">
-      <img src="../src/images/profile/profile-avatar.jpg" alt="Пользователь - Джон Бернтал" class="profile__avatar">
+      <img alt="Аватар пользователя" class="profile__avatar">
+      <div class="profile__avatar-edit-btn"></div>
       <div class="profile__info">
-        <h1 class="profile__name">Джон&nbsp;Бернтал</h1>
+        <h1 class="profile__name"></h1>
         <button class="profile__edit-btn" aria-label="Редактировать профиль" type="button"></button>
-        <p class="profile__status">The truth must be taken</p>
+        <p class="profile__status"></p>
       </div>
       <button class="profile__add-btn" aria-label="Добавить фотокарточку" type="button"></button>
     </section>
@@ -38,7 +38,10 @@
           <img src="#link" alt="template-alt-text" class="element__photo">
           <div class="element__label">
             <h2 class="element__name"></h2>
-            <button class="element__like-btn"></button>
+            <div class="element__like-container">
+              <button class="element__like-btn"></button>
+              <span class="element__like-count">0</span>
+            </div>
           </div>
         </div>
       </template>
@@ -72,6 +75,23 @@
     </div>
   </section>
 
+  <section class="popup popup-avatar-edit">
+    <div class="popup-avatar-edit__window">
+      <button class="popup-avatar-edit__close-btn" type="button"></button>
+      <form class="form form-avatar-edit" name="avatar-edit" novalidate>
+        <h2 class="form-avatar-edit__title">Новый аватар</h2>
+        <fieldset class="form-avatar-edit__fieldset">
+          <label class="form__field">
+            <input class="form__input form-avatar-edit__input" type="url" id="avatar-link" name="link"
+              placeholder="Ссылка на аватар" required>
+            <span class="form__input-error" id="avatar-link-error"></span>
+          </label>
+          <button class="form__btn form-avatar-edit__save-btn" type="submit">Сохранить</button>
+        </fieldset>
+      </form>
+    </div>
+  </section>
+
   <section class="popup popup-add">
     <div class="popup-add__window">
       <button class="popup-add__close-btn" type="button"></button>
@@ -94,6 +114,16 @@
     </div>
   </section>
 
+  <section class="popup popup-delete">
+    <div class="popup-delete__window">
+      <button class="popup-delete__close-btn" type="button"></button>
+      <form class="form form-delete" name="delete-card" novalidate>
+        <h2 class="form-delete__title">Удалить фотокарточку?</h2>
+        <button class="form__btn form-delete__save-btn" type="submit">Да</button>
+      </form>
+    </div>
+  </section>
+
   <section class="popup popup-open">
     <div class="popup-open__window">
       <button class="popup-open__close-btn" type="button"></button>
@@ -103,16 +133,6 @@
       </figure>
     </div>
   </section>
-
-  <!-- <script type="module" src="./scripts/utils/constants.js"></script>
-  <script type="module" src="./scripts/components/Card.js"></script>
-  <script type="module" src="./scripts/components/FormValidator.js"></script>
-  <script type="module" src="./scripts/components/Popup.js"></script>
-  <script type="module" src="./scripts/components/PopupWithForm.js"></script>
-  <script type="module" src="./scripts/components/PopupWithImage.js"></script>
-  <script type="module" src="./scripts/components/Section.js"></script>
-  <script type="module" src="./scripts/components/UserInfo.js"></script>
-  <script type="module" src="./src/index.js"></script> -->
 
 </body>
 
