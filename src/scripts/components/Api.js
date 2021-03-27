@@ -4,18 +4,18 @@ export default class Api {
     this.headers = options.headers;
   }
 
-  _handleResponse(response) {
-    if (response.ok) {
-      return response.json();
+  _handleResponse(res) {
+    if (res.ok) {
+      return res.json();
     } else {
-      console.log(`Ошибка: ${response.status}`);
-      return Promise.reject(response.statusText);
+      console.log(`Ошибка: ${res.status}`);
+      return Promise.reject(res.statusText);
     }
   }
 
-  _handleResponseError(error) {
-    console.log(`Ошибка: ${error.message}`);
-    return Promise.reject(error.message);
+  _handleResponseError(err) {
+    console.log(`Ошибка: ${err.message}`);
+    return Promise.reject(err.message);
   }
 
   getUserInfo() {
