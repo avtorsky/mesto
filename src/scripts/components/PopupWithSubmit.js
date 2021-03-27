@@ -7,7 +7,10 @@ export default class PopupWithSubmit extends Popup {
   }
 
   setSubmitListener(card, cardId) {
-    const formDelete = this._popup.querySelector('.form-delete');
-    formDelete.addEventListener('submit', () => this._handleCardDelete(card, cardId));
+    super.setEventListeners();
+    this._popup.querySelector('.form-delete__save-btn').addEventListener('submit', (event) => {
+      event.preventDefault();
+      this._handleCardDelete(card, cardId);
+    })
   }
 }
