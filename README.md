@@ -15,7 +15,7 @@ Developed under the [Practicum](https://practicum.yandex.com/web/) online bootca
 
 ## Changelog
 Release 20210520:
-* refactor(index.js): load all the assets via fetch API server connection
+* refactor(index.js): load all the assets via server fetch API connection
 
 Release 20210313:
 * refactor(index.js): split into additional modules Section.js, Popup.js, PopupWithImage.js, PopupWithForm.js, UserInfo.js
