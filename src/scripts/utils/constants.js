@@ -28,7 +28,6 @@ export const formValidationSelectors = {
 };
 
 export const cardsContainerSelector = '.elements';
-export const cardSelector = '.element';
 export const cardTemplateSelector = '.elements__template';
 export const profileNameSelector = '.profile__name';
 export const profileStatusSelector = '.profile__status';
@@ -40,9 +39,9 @@ export const popupEditAvatarSelector = '.popup-avatar-edit';
 export const popupDeleteSelector = '.popup-delete';
 
 export const apiAuthorizationConfig = {
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-21',
   headers: {
-    authorization: '159b35a8-d58e-44ce-a10d-31006f74b905',
+    authorization: '0771498a-40b6-4e5b-8924-7ee0f33d1842',
     'Content-Type': 'application/json'
   }
 };
