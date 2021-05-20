@@ -14,8 +14,8 @@ Adaptive single page demo with the following stack implementation:
 Developed under the [Practicum](https://practicum.yandex.com/web/) online bootcamp.
 
 ## Changelog
-Release 20210325:
-* refactor(index.js): load all the assets via server REST API connection
+Release 20210520:
+* refactor(index.js): load all the assets via server fetch API connection
 
 Release 20210313:
 * refactor(index.js): split into additional modules Section.js, Popup.js, PopupWithImage.js, PopupWithForm.js, UserInfo.js
