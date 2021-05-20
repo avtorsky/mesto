@@ -1,30 +1,15 @@
 import './index.css';
 import {
-  formAdd,
-  formAddCardSubmitButton,
-  formDelete,
-  formDeleteSubmitButton,
-  formEdit,
-  formEditName,
-  formEditStatus,
-  formEditSubmitButton,
-  formEditAvatar,
-  avatarEditButton,
-  formEditAvatarSubmitButton,
+  formAdd, formAddCardSubmitButton, formDelete, formDeleteSubmitButton,
+  formEdit, formEditName, formEditStatus, formEditSubmitButton,
+  formEditAvatar, avatarEditButton, formEditAvatarSubmitButton,
   profileEditButton,
   cardAddButton,
-  formValidationSelectors,
-  apiAuthorizationConfig,
-  cardTemplateSelector,
-  profileNameSelector,
-  profileStatusSelector,
-  cardsContainerSelector,
-  popupEditSelector,
-  popupAddSelector,
-  popupOpenSelector,
-  profileAvatarSelector,
-  popupEditAvatarSelector,
-  popupDeleteSelector
+  popupEditSelector, popupAddSelector, popupOpenSelector, popupDeleteSelector,
+  formValidationSelectors, apiAuthorizationConfig,
+  cardsContainerSelector, cardTemplateSelector, cardSelector,
+  profileNameSelector, profileStatusSelector,
+  profileAvatarSelector, popupEditAvatarSelector
 } from '../scripts/utils/constants.js';
 import Card from '../scripts/components/Card.js';
 import FormValidator from '../scripts/components/FormValidator.js';
@@ -35,84 +20,101 @@ import UserInfo from '../scripts/components/UserInfo.js';
 import PopupWithSubmit from '../scripts/components/PopupWithSubmit.js'
 import Api from '../scripts/components/Api.js';
 
-
 const api = new Api(apiAuthorizationConfig);
-const user = new UserInfo({ userName: profileNameSelector, userStatus: profileStatusSelector, userAvatar: profileAvatarSelector })
-const userId = user.setUserId();
-const preLoader = (elem, buttonElement, buttonText) => {
-  if (buttonElement) {
-    elem ? buttonElement.textContent = 'Сохранение...' : buttonElement.textContent = buttonText
-  }
-};
 
-const getCardsPromise = new Promise((resolve, reject) => {
-  api.getInitialCards()
-    .then((result) => {
-      const cardsFeed = new Section({
-        items: result.reverse(),
-        renderer: (item) => {
-          cardsFeed.addItem(createCard(item));
-        }
-      }, cardsContainerSelector);
-      cardsFeed.renderItems();
-      resolve('ok');
-    })
-    .catch((err) => {
-      console.log(err);
-      reject('error');
-    });
+const user = new UserInfo({
+  userName: profileNameSelector,
+  userStatus: profileStatusSelector,
+  userAvatar: profileAvatarSelector
 });
 
-const getUserInfoPromise = new Promise((resolve, reject) => {
-  api.getUserInfo()
-    .then((result) => {
-      user.setUserInfo(result.name, result.about);
-      user.setUserAvatar(result.avatar);
-      user.id = result._id;
-      resolve('ok');
-    })
-    .catch((err) => {
-      console.log(err);
-      reject('error');
-    });
+let userId = null;
+
+const popupOpen = new PopupWithImage(popupOpenSelector);
+popupOpen.setEventListeners();
+
+const popupDelete = new PopupWithSubmit(
+  popupDeleteSelector, {
+  submitForm: () => { }
 });
+popupDelete.setEventListeners();
 
-const promises = [getCardsPromise, getUserInfoPromise];
-Promise.all(promises)
+const createCard = (cardData) => {
+  const card = new Card({
+    data: { ...cardData, userId },
+    handleCardClick: (name, link) => { popupOpen.open(name, link) },
+    handleCardLike: () => {
+      const cardId = card.getCardId();
+      const likeState = card.isLiked();
+      const likeStatus = likeState ? cardId => api.deleteLike(cardId) : cardId => api.addLike(cardId);
+      likeStatus(cardId)
+        .then((data) => {
+          card.setLikes(data.likes);
+        })
+        .catch((err) => {
+          console.error(`Событие невозможно выполнить. Ошибка ${err}`);
+        })
+        .finally(() => {
+          card.setLikeContainer(userId);
+        });
+    },
+    handleCardDelete: () => {
+      popupDelete.setSubmitForm(() => {
+        formDeleteSubmitButton.textContent = 'Удаление...';
+        api.deleteCard(card.getCardId())
+          .then(() => {
+            card.delete();
+            popupDelete.close();
+          })
+          .catch((err) => {
+            console.log(`Невозможно удалить карточку. Ошибка ${err}`);
+          })
+          .finally(() => {
+            formDeleteSubmitButton.textContent = 'Да';
+          });
+      });
+      popupDelete.open()
+    }
+  }, cardTemplateSelector, cardSelector);
 
-
-function createCard(data) {
-  const card = new Card(data, cardTemplateSelector, userId, handleCardClick, handleDeleteIconClick, handleLikeCLick);
-  return card.renderCard();
+  return card.renderCard(userId);
 }
 
-
-const formEditValidator = new FormValidator(formValidationSelectors, formEdit);
-formEditValidator.enableValidation();
-
-const formEditAvatarValidator = new FormValidator(formValidationSelectors, formEditAvatar);
-formEditAvatarValidator.enableValidation();
-
-const formAddValidator = new FormValidator(formValidationSelectors, formAdd);
-formAddValidator.enableValidation();
-
-const formDeleteValidator = new FormValidator(formValidationSelectors, formDelete);
-formDeleteValidator.enableValidation();
-
+const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector,
+  function (inputValues) {
+    formEditAvatarSubmitButton.textContent = 'Сохранение...';
+    api.setUserAvatar(inputValues.link)
+      .then((res) => {
+        user.setUserAvatar(res.avatar);
+        this.close();
+      })
+      .catch((err) => {
+        console.error(`Невозможно сохранить новый аватар. Ошибка ${err}`);
+      })
+      .finally(() => {
+        formEditAvatarSubmitButton.textContent = 'Сохранить';
+      });
+  }
+);
+popupEditAvatar.setEventListeners();
+avatarEditButton.addEventListener('click', () => {
+  formEditAvatarValidator.formValidationConfig();
+  popupEditAvatar.open();
+});
 
 const popupEdit = new PopupWithForm(popupEditSelector,
   function ({ name, status }) {
-    preLoader(true, formEditSubmitButton);
+    formEditSubmitButton.textContent = 'Сохранение...';
     api.setUserInfo(name, status)
-      .then((result) => {
-        user.setUserInfo(result.name, result.about);
+      .then((res) => {
+        user.setUserInfo(res.name, res.about);
+        this.close();
       })
       .catch((err) => {
-        console.log(err);
+        console.log(`Невозможно сохранить новые данные пользователя. Ошибка ${err}`);
       })
       .finally(() => {
-        preLoader(false, formEditSubmitButton, 'Сохранить');
-        this.close();
+        formEditSubmitButton.textContent = 'Сохранить';
       })
   }
 );
@@ -127,26 +129,25 @@ profileEditButton.addEventListener('click', () => {
   popupEdit.open();
 });
 
-
 const popupAdd = new PopupWithForm(popupAddSelector,
   function ({ name, link }) {
-    preLoader(true, formAddCardSubmitButton);
+    formAddCardSubmitButton.textContent = 'Сохранение...';
     api.addCard(name, link)
-      .then((result) => {
+      .then((res) => {
         const cardsFeed = new Section({
-          items: result,
+          items: res,
           renderer: (item) => {
             cardsFeed.addItem(createCard(item));
           }
         }, cardsContainerSelector);
-        cardsFeed.addItem(createCard(result));
+        cardsFeed.addItem(createCard(res));
+        this.close();
       })
       .catch((err) => {
-        console.log(err);
+        console.log(`Невозможно добавить новую карточку. Ошибка ${err}`);
       })
       .finally(() => {
-        preLoader(false, formAddCardSubmitButton, 'Сохранить');
-        this.close();
+        formAddCardSubmitButton.textContent = 'Добавить';
       });
   }
 );
@@ -157,83 +158,47 @@ cardAddButton.addEventListener('click', () => {
   popupAdd.open();
 });
 
+const formEditValidator = new FormValidator(formValidationSelectors, formEdit);
+formEditValidator.enableValidation();
 
-const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector,
-  function (inputValues) {
-    preLoader(true, formEditAvatarSubmitButton);
-    api.setUserAvatar(inputValues.link)
-      .then((result) => {
-        user.setUserAvatar(result.avatar);
-      })
-      .catch((err) => {
-        console.error(err);
-      })
-      .finally(() => {
-        preLoader(false, formEditAvatarSubmitButton, 'Сохранить');
-        this.close();
-      });
-  }
-);
-popupEditAvatar.setEventListeners();
-avatarEditButton.addEventListener('click', () => {
-  formEditAvatarValidator.formValidationConfig();
-  popupEditAvatar.open();
-});
+const formEditAvatarValidator = new FormValidator(formValidationSelectors, formEditAvatar);
+formEditAvatarValidator.enableValidation();
 
+const formAddValidator = new FormValidator(formValidationSelectors, formAdd);
+formAddValidator.enableValidation();
 
-const popupOpen = new PopupWithImage(popupOpenSelector);
-popupOpen.setEventListeners();
+const formDeleteValidator = new FormValidator(formValidationSelectors, formDelete);
+formDeleteValidator.enableValidation();
 
+const getUserPromise = new Promise((resolve, reject) => {
+  api.getUserInfo()
+    .then(res => {
+      user.setUserInfo(res.name, res.about);
+      user.setUserAvatar(res.avatar);
+      userId = res._id;
+      resolve(res);
+    })
+    .catch(err => {
+      console.error(`Невозможно получить данные о пользователе. Ошибка ${err}`);
+      reject(err);
+    });
+})
 
-const popupDelete = new PopupWithSubmit(popupDeleteSelector,
-  function (card, cardId) {
-    preLoader(true, formDeleteSubmitButton);
-    api.deleteCard(cardId)
-      .then(() => {
-        card.remove();
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-      .finally(() => {
-        preLoader(false, formDeleteSubmitButton, 'Да');
-        this.close();
-      });
-  }
-);
-popupDelete.setSubmitListener();
+const getCardsPromise = new Promise((resolve, reject) => {
+  api.getInitialCards()
+    .then(res => {
+      const cardsFeed = new Section({
+        items: res,
+        renderer: (item) => { cardsFeed.addItem(createCard(item)) }
+      }, cardsContainerSelector);
+      cardsFeed.renderItems(res.reverse());
+      resolve(res);
+    })
+    .catch(err => {
+      console.error(`Невозможно получить данные о карточках. Ошибка ${err}`);
+      reject(err);
+    });
+})
 
-
-function handleCardClick(name, link) {
-  popupOpen.open(name, link);
-};
-
-
-function handleLikeCLick(cardId) {
-  if (this.isLiked()) {
-    api.deleteLike(cardId)
-      .then((result) => {
-        this.getElement().querySelector('.element__like-count').textContent = this.updateLikesList(result.likes).length;
-        this.getElement().querySelector('.element__like-btn').classList.remove('element__like-btn_active');
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  } else {
-    api.addLike(cardId)
-      .then((result) => {
-        this.getElement().querySelector('.element__like-count').textContent = this.updateLikesList(result.likes).length;
-        this.getElement().querySelector('.element__like-btn').classList.add('element__like-btn_active');
-      })
-      .catch((err) => {
-        console.error(err);
-      });
-  }
-};
-
-
-function handleDeleteIconClick(id, activeCard) {
-  popupDelete.cardId = id;
-  popupDelete.card = activeCard;
-  popupDelete.open();
-};
+const promises = [getUserPromise, getCardsPromise];
+Promise.all(promises)
