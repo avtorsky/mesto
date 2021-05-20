@@ -1,5 +1,5 @@
 .profile__avatar-edit-btn {
-  background-color: rgba(0, 0, 0, .8);
+  background-color: rgba(0, 0, 0, .6);
   background-image: url('../../../images/profile/profile-avatar-edit-btn.svg');
   background-position: center;
   background-repeat: no-repeat;
@@ -10,9 +10,10 @@
   left: 0;
   display: none;
   cursor: pointer;
+  transition: opacity .1s ease;
 }
 
-.profile__avatar:hover + .profile__avatar-edit-btn {
+.profile__avatar-edit-btn:hover {
   display: block;
 }
 

@@ -7,3 +7,7 @@
   object-position: center;
   cursor: pointer;
 }
+
+.profile__avatar:hover + .profile__avatar-edit-btn {
+  display: block;
+}
