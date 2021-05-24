@@ -13,18 +13,12 @@ export default class Api {
     }
   }
 
-  _handleResponseError(err) {
-    console.log(`Ошибка: ${err.message}`);
-    return Promise.reject(err.message);
-  }
-
   getUserInfo() {
     return fetch(`${this.baseUrl}/users/me`, {
       method: 'GET',
       headers: this.headers
     })
-      .then(this._handleResponse)
-      .catch(this._handleResponseError);
+      .then(this._handleResponse);
   }
 
   setUserInfo(name, status) {
@@ -36,8 +30,7 @@ export default class Api {
         about: status,
       })
     })
-      .then(this._handleResponse)
-      .catch(this._handleResponseError);
+      .then(this._handleResponse);
   }
 
   setUserAvatar(link) {
@@ -48,8 +41,7 @@ export default class Api {
         avatar: link
       })
     })
-      .then(this._handleResponse)
-      .catch(this._handleResponseError);
+      .then(this._handleResponse);
   }
 
   getInitialCards() {
@@ -57,8 +49,7 @@ export default class Api {
       method: 'GET',
       headers: this.headers
     })
-      .then(this._handleResponse)
-      .catch(this._handleResponseError);
+      .then(this._handleResponse);
   }
 
   addCard(name, link) {
@@ -70,8 +61,7 @@ export default class Api {
         link: link
       })
     })
-      .then(this._handleResponse)
-      .catch(this._handleResponseError);
+      .then(this._handleResponse);
   }
 
   deleteCard(cardId) {
@@ -79,8 +69,7 @@ export default class Api {
       method: 'DELETE',
       headers: this.headers
     })
-      .then(this._handleResponse)
-      .catch(this._handleResponseError);
+      .then(this._handleResponse);
   }
 
   addLike(cardId) {
@@ -88,8 +77,7 @@ export default class Api {
       method: 'PUT',
       headers: this.headers
     })
-      .then(this._handleResponse)
-      .catch(this._handleResponseError);
+      .then(this._handleResponse);
   }
 
   deleteLike(cardId) {
@@ -97,7 +85,6 @@ export default class Api {
       method: 'DELETE',
       headers: this.headers
     })
-      .then(this._handleResponse)
-      .catch(this._handleResponseError);
+      .then(this._handleResponse);
   }
 }

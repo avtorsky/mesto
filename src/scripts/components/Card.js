@@ -36,7 +36,7 @@ export default class Card {
   setLikeContainer() {
     this._isLiked = this._likes.some(user => user._id === this._userId);
     this._likesCounter.textContent = this._likes.length;
-    if (this._likes.length) {
+    if (this._isLiked) {
       this._setLikeButton();
     } else {
       this._unsetLikeButton();
