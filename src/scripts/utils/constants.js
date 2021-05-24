@@ -1,4 +1,3 @@
-export const keyEscapeSelector = 'Escape';
 export const popupEdit = document.querySelector('.popup-edit');
 export const profileEditButton = document.querySelector('.profile__edit-btn');
 export const formEdit = popupEdit.querySelector('.form-edit');

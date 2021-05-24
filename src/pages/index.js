@@ -50,12 +50,10 @@ const createCard = (cardData) => {
       likeStatus(cardId)
         .then((data) => {
           card.setLikes(data.likes);
+          card.setLikeContainer(userId);
         })
         .catch((err) => {
           console.error(`Событие невозможно выполнить. Ошибка ${err}`);
-        })
-        .finally(() => {
-          card.setLikeContainer(userId);
         });
     },
     handleCardDelete: () => {
@@ -86,7 +84,7 @@ const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector,
     api.setUserAvatar(inputValues.link)
       .then((res) => {
         user.setUserAvatar(res.avatar);
-        this.close();
+        popupEditAvatar.close();
       })
       .catch((err) => {
         console.error(`Невозможно сохранить новый аватар. Ошибка ${err}`);
@@ -98,7 +96,7 @@ const popupEditAvatar = new PopupWithForm(popupEditAvatarSelector,
 );
 popupEditAvatar.setEventListeners();
 avatarEditButton.addEventListener('click', () => {
-  formEditAvatarValidator.formValidationConfig();
+  formEditAvatarValidator.resetValidation();
   popupEditAvatar.open();
 });
 
@@ -108,7 +106,7 @@ const popupEdit = new PopupWithForm(popupEditSelector,
     api.setUserInfo(name, status)
       .then((res) => {
         user.setUserInfo(res.name, res.about);
-        this.close();
+        popupEdit.close();
       })
       .catch((err) => {
         console.log(`Невозможно сохранить новые данные пользователя. Ошибка ${err}`);
@@ -120,7 +118,7 @@ const popupEdit = new PopupWithForm(popupEditSelector,
 );
 popupEdit.setEventListeners();
 profileEditButton.addEventListener('click', () => {
-  formEditValidator.formValidationConfig();
+  formEditValidator.resetValidation();
   const setFormEditInputValue = ({ name, status }) => {
     formEditName.value = name;
     formEditStatus.value = status;
@@ -129,19 +127,17 @@ profileEditButton.addEventListener('click', () => {
   popupEdit.open();
 });
 
+const cardsFeed = new Section({
+  renderer: (item) => { cardsFeed.addItem(createCard(item)) }
+}, cardsContainerSelector);
+
 const popupAdd = new PopupWithForm(popupAddSelector,
   function ({ name, link }) {
     formAddCardSubmitButton.textContent = 'Сохранение...';
     api.addCard(name, link)
       .then((res) => {
-        const cardsFeed = new Section({
-          items: res,
-          renderer: (item) => {
-            cardsFeed.addItem(createCard(item));
-          }
-        }, cardsContainerSelector);
         cardsFeed.addItem(createCard(res));
-        this.close();
+        popupAdd.close();
       })
       .catch((err) => {
         console.log(`Невозможно добавить новую карточку. Ошибка ${err}`);
@@ -153,8 +149,7 @@ const popupAdd = new PopupWithForm(popupAddSelector,
 );
 popupAdd.setEventListeners();
 cardAddButton.addEventListener('click', () => {
-  formAddValidator.formValidationConfig();
-  formAdd.reset();
+  formAddValidator.resetValidation();
   popupAdd.open();
 });
 
@@ -170,35 +165,15 @@ formAddValidator.enableValidation();
 const formDeleteValidator = new FormValidator(formValidationSelectors, formDelete);
 formDeleteValidator.enableValidation();
 
-const getUserPromise = new Promise((resolve, reject) => {
-  api.getUserInfo()
-    .then(res => {
-      user.setUserInfo(res.name, res.about);
-      user.setUserAvatar(res.avatar);
-      userId = res._id;
-      resolve(res);
-    })
-    .catch(err => {
-      console.error(`Невозможно получить данные о пользователе. Ошибка ${err}`);
-      reject(err);
-    });
-})
+const promises = [api.getUserInfo(), api.getInitialCards()];
 
-const getCardsPromise = new Promise((resolve, reject) => {
-  api.getInitialCards()
-    .then(res => {
-      const cardsFeed = new Section({
-        items: res,
-        renderer: (item) => { cardsFeed.addItem(createCard(item)) }
-      }, cardsContainerSelector);
-      cardsFeed.renderItems(res.reverse());
-      resolve(res);
-    })
-    .catch(err => {
-      console.error(`Невозможно получить данные о карточках. Ошибка ${err}`);
-      reject(err);
-    });
-})
-
-const promises = [getUserPromise, getCardsPromise];
 Promise.all(promises)
+  .then(([userData, cards]) => {
+    user.setUserInfo(userData.name, userData.about);
+    user.setUserAvatar(userData.avatar);
+    userId = userData._id;
+    cardsFeed.renderItems(cards.reverse());
+  })
+  .catch(err => {
+    console.error(`Невозможно получить данные. Ошибка ${err}`);
+  });
